@@ -6,6 +6,7 @@ import React, { SetStateAction, useState } from "react";
 async function handleSignIn(
   event: React.FormEvent<HTMLFormElement>,
   setError: React.Dispatch<SetStateAction<string | null>>,
+  setUser: React.Dispatch<SetStateAction<string | null>>,
   router: ReturnType<typeof useRouter>
 ) {
   event.preventDefault();
@@ -26,9 +27,20 @@ async function handleSignIn(
       setError(data.error);
     }
 
-    if (response.ok) {
-      router.push("/profile");
-    }
+    const data = await response.json();
+    const { accessToken, refreshToken, user } = data;
+    console.log("Access Token:", accessToken);
+    console.log("Refresh Token:", refreshToken);
+    console.log("User:", user);
+
+    // Store the accessToken securely (e.g., in httpOnly cookies or local storage)
+    localStorage.setItem("accessToken", accessToken);
+
+    // Update the user state
+    setUser(user);
+
+    // Redirect to a protected route
+    router.push("/profile");
   } catch (error: any) {
     console.error(error);
     setError("An unexpected error occurred.");
@@ -38,12 +50,13 @@ async function handleSignIn(
 function LoginForm() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const [user, setUser] = useState<string | null>(null);
 
   return (
     <section className="flex flex-col justify-center items-center h-dvh">
       <h1>Pomomac</h1>
       <form
-        onSubmit={(event) => handleSignIn(event, setError, router)}
+        onSubmit={(event) => handleSignIn(event, setError, setUser, router)}
         className="flex flex-col"
       >
         <input name="email" type="email" placeholder="Email" />
