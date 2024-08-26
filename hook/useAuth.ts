@@ -10,24 +10,27 @@ const useAuth = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/auth", {
+        const response = await fetch("http://localhost:5000/users/profile", {
           method: "GET",
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
           credentials: "include", // Important for sending cookies
         });
 
         if (!response.ok) {
-          console.log("Not authenticated, clearing user");
+          const data = await response.json();
+          console.log(data.message);
+          console.log("Failed to check authentication, clearing user");
           setUser(null);
           return;
         }
 
         const data = await response.json();
-        const { accessToken, user } = data;
+        console.log(data);
+        const { email } = data;
         console.log("Authenticated, setting user", user);
-        setUser(user);
+        setUser(email);
       } catch (error) {
         console.error("Failed to check authentication", error);
         setUser(null);
