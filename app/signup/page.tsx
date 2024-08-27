@@ -22,7 +22,7 @@ async function handleSubmitSignUp(
       return;
     }
 
-    const response = await fetch("http://localhost:5000/api/signup", {
+    const response = await fetch("http://localhost:5000/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,6 @@ async function handleSubmitSignUp(
 
 export default function SignUpForm() {
   const [error, setError] = useState<string | null>(null);
-
   const router = useRouter();
 
   return (
