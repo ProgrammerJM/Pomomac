@@ -1,13 +1,15 @@
 import React from "react";
 import { ToggleMode } from "./ToggleMode";
 import { BsThreeDots } from "react-icons/bs";
-import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
+import Pomomac from "@/public/pomomaclogo.svg";
+import Link from "next/link";
+import Image from "next/image";
 
 function Header() {
   return (
     <div className="flex justify-between items-center p-9 lg:p-16 md:p-16 sm:p-14">
-      <h1 className="dark:text-white text-black font-bold">Pomomac</h1>
+      <Image src={Pomomac} width={60} height={60} alt="Pomomac Logo" />
       <div className="flex">
         <div className="flex justify-evenly w-24 mr-12">
           <Link
