@@ -5,6 +5,7 @@ import { fetchUserProfile } from "@/app/services/fetchUserProfile";
 import Footer from "@/components/Footer";
 import { useRouter } from "next/navigation";
 import ProfileHeader from "@/components/ProfileHeader";
+import PomodoroTimer from "@/components/PomodoroTimer";
 
 interface UserProfile {
   id: string;
@@ -19,8 +20,9 @@ function Profile() {
   useEffect(() => {
     async function loadUserProfile() {
       try {
-        const profile = await fetchUserProfile();
-        setUserProfile(profile);
+        const userProfile = await fetchUserProfile();
+
+        setUserProfile(userProfile);
       } catch (err: any) {
         setError(err.message);
       }
@@ -29,19 +31,11 @@ function Profile() {
     loadUserProfile();
   }, []);
 
-  if (error) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-red-500">{error}</h1>
-        <button
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-          onClick={() => router.push("/login")}
-        >
-          Login
-        </button>
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (error) {
+      router.push("/login");
+    }
+  }, [error, router]);
 
   if (!userProfile) {
     return (
@@ -55,7 +49,10 @@ function Profile() {
     <main className="relative flex justify-center items-center flex-col mx-auto overflow-clip">
       <div className="max-w-7xl w-full">
         <ProfileHeader />
-        <h1>Welcome, {userProfile.email}!</h1>
+        <h1 className="flex justify-center items-center">
+          Welcome, {userProfile.email}!
+        </h1>
+        <PomodoroTimer />
         <Footer />
       </div>
     </main>
