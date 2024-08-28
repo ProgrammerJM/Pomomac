@@ -28,12 +28,7 @@ async function handleSignIn(
       return setError(data.error);
     }
 
-    const { accessToken, refreshToken, existingUser } = data;
-    console.log("Access token:", accessToken);
-    console.log("Refresh token:", refreshToken);
-    console.log("Existing user:", existingUser);
-
-    // router.push("/profile");
+    router.push("/profile");
   } catch (error: any) {
     console.error("Login failed:", error.message);
     setError("Sign in failed.");
