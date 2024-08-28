@@ -7,9 +7,12 @@ import React, { FormEvent, useState } from "react";
 async function handleSubmitSignUp(
   event: FormEvent<HTMLFormElement>,
   setError: React.Dispatch<React.SetStateAction<string | null>>,
+  setMessage: React.Dispatch<React.SetStateAction<string | null>>,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   router: ReturnType<typeof useRouter>
 ) {
   event.preventDefault();
+  setLoading(true);
 
   try {
     const formData = new FormData(event.currentTarget);
@@ -30,14 +33,19 @@ async function handleSubmitSignUp(
       body: JSON.stringify({ email, password }),
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      const data = await response.json();
       setError(data.error);
     }
 
     if (response.ok) {
-      router.push("/login");
+      setError(null);
+      setLoading(false);
+      setMessage(data.message);
     }
+
+    router.push("/login");
   } catch (error: any) {
     console.error(error);
   }
@@ -45,18 +53,48 @@ async function handleSubmitSignUp(
 
 export default function SignUpForm() {
   const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
+
+  if (loading) {
+    return (
+      <h1 className="flex flex-col items-center justify-center h-screen">
+        Loading...
+      </h1>
+    );
+  }
+
+  if (message) {
+    return (
+      <h1 className="flex flex-col items-center justify-center h-screen">
+        {message}
+      </h1>
+    );
+  }
 
   return (
     <section className="flex flex-col justify-center items-center h-dvh">
       <h1>Pomomac</h1>
       <h2>Create an Account</h2>
       <form
-        onSubmit={(event) => handleSubmitSignUp(event, setError, router)}
+        onSubmit={(event) =>
+          handleSubmitSignUp(event, setError, setMessage, setLoading, router)
+        }
         className="flex flex-col"
       >
-        <input name="email" type="email" placeholder="Email" />
-        <input name="password" type="password" placeholder="Password" />
+        <input
+          name="email"
+          type="email"
+          placeholder="Email"
+          autoComplete="email"
+        />
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          autoComplete="current-password"
+        />
         <input
           name="confirmPassword"
           type="password"
