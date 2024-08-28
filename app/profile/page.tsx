@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import { fetchUserProfile } from "@/app/services/fetchUserProfile";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useRouter } from "next/navigation";
+import ProfileHeader from "@/components/ProfileHeader";
 
 interface UserProfile {
   id: string;
@@ -54,7 +54,7 @@ function Profile() {
   return (
     <main className="relative flex justify-center items-center flex-col mx-auto overflow-clip">
       <div className="max-w-7xl w-full">
-        <Header />
+        <ProfileHeader />
         <h1>Welcome, {userProfile.email}!</h1>
         <Footer />
       </div>
