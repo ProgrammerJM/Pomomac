@@ -99,6 +99,7 @@ export default function SignUpForm() {
           name="confirmPassword"
           type="password"
           placeholder="Confirm Password"
+          autoComplete="current-password"
         />
         <button>Sign Up</button>
         {error && <p className="text-red-500">{error}</p>}
