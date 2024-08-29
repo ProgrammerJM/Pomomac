@@ -1,4 +1,5 @@
-async function logOutUser() {
+import { useRouter } from "next/navigation";
+async function logOutUser(router: ReturnType<typeof useRouter>) {
   const response = await fetch("http://localhost:5000/api/auth/logout", {
     method: "POST",
     credentials: "include", // To send cookies with the request
@@ -6,11 +7,12 @@ async function logOutUser() {
 
   if (response.ok) {
     // Redirect to login or home page
-    window.location.href = "/";
+    router.push("/");
   } else {
     const error = await response.json();
-    console.error("Logout failed:", error.message);
+    console.error("Logout failed:", error);
   }
+  return response;
 }
 
 export { logOutUser };
