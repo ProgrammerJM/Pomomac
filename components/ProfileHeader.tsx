@@ -1,14 +1,14 @@
 import React from "react";
 import { ToggleMode } from "./ToggleMode";
-import Pomomac from "@/public/pomomaclogo.svg";
 import Image from "next/image";
 import { logOutUser } from "@/app/services/logOutUser";
 import { BiLogOut } from "react-icons/bi";
+import UserSettings from "@/components/UserSettings";
 
 function ProfileHeader() {
   return (
     <div className="flex justify-between items-center p-9 lg:p-16 md:p-16 sm:p-14">
-      <Image src={Pomomac} width={60} height={60} alt="Pomomac Logo" />
+      <h1 className="dark:text-white text-black font-bold">Pomomac</h1>
       <div className="flex">
         <div className="flex justify-evenly w-24 mr-12">
           <button
@@ -22,6 +22,7 @@ function ProfileHeader() {
             <span className="whitespace-nowrap">Logout</span>
           </button>
         </div>
+        <UserSettings />
         <ToggleMode />
       </div>
     </div>
