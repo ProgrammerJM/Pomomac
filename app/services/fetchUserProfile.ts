@@ -1,24 +1,41 @@
+import { useRouter } from "next/navigation";
 import { refreshAccessToken } from "./refreshAccessToken";
 
-async function fetchUserProfile() {
-  const response = await fetch("http://localhost:5000/api/user/profile", {
-    method: "GET",
-    credentials: "include",
-  });
+let isRefreshing = false;
+let refreshPromise: Promise<any> | null = null;
 
-  if (!response.ok) {
+async function fetchUserProfile(router: ReturnType<typeof useRouter>) {
+  try {
+    const response = await fetch("http://localhost:5000/api/user/profile", {
+      method: "GET",
+      credentials: "include",
+    });
+
     if (response.status === 401) {
-      // Handle token expiry
-      await refreshAccessToken();
-      return fetchUserProfile();
+      if (!isRefreshing) {
+        isRefreshing = true;
+        refreshPromise = refreshAccessToken(router).finally(() => {
+          isRefreshing = false;
+          refreshPromise = null;
+        });
+      }
+
+      await refreshPromise; // Wait for the refresh token process to complete
+
+      // Retry fetching user profile with new tokens
+      return fetchUserProfile(router);
     }
-    const error = await response.json();
-    throw new Error(error.message);
+
+    if (response.ok) {
+      const userProfile = await response.json();
+      return userProfile;
+    } else {
+      return;
+    }
+  } catch (error: any) {
+    console.error(error.message);
+    return;
   }
-
-  const userProfile = await response.json();
-
-  return userProfile;
 }
 
 export { fetchUserProfile };
