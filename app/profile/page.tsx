@@ -20,7 +20,7 @@ function Profile() {
   useEffect(() => {
     async function loadUserProfile() {
       try {
-        const userProfile = await fetchUserProfile();
+        const userProfile = await fetchUserProfile(router);
 
         setUserProfile(userProfile);
       } catch (err: any) {
