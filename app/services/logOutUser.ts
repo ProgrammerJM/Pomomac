@@ -5,12 +5,13 @@ async function logOutUser(router: ReturnType<typeof useRouter>) {
     credentials: "include", // To send cookies with the request
   });
 
+  const data = await response.json();
+
   if (response.ok) {
     // Redirect to login or home page
     router.push("/");
   } else {
-    const error = await response.json();
-    console.error("Logout failed:", error);
+    console.error("Logout failed:", data.error);
   }
   return response;
 }
