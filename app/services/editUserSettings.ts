@@ -6,8 +6,6 @@ async function editUserSettings() {
 
   const data = await response.json();
 
-  console.log(data);
-
   if (!response.ok) {
     console.error("Failed to edit user settings");
   }
