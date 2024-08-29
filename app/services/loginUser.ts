@@ -42,7 +42,7 @@ async function handleSignIn(
     setMessage(data.message);
     router.push("/profile");
   } catch (error: any) {
-    console.error("Login failed:", error.message);
+    console.error("Login failed:", error);
     setError("Sign in failed.");
     setLoading(false);
   }
