@@ -13,16 +13,15 @@ async function refreshAccessToken(router: ReturnType<typeof useRouter>) {
     );
 
     const data = await response.json();
-    console.log(data);
 
     if (!response.ok) {
       router.push("/login");
       throw new Error(data.error || "Failed to refresh token");
     }
 
-    return { accessToken: data.accessToken };
-  } catch (err: any) {
-    console.error("Error refreshing access token:", err.message);
+    return;
+  } catch (error: any) {
+    console.error("Error refreshing access token:", error);
     return null; // Return null if there's an error
   }
 }
