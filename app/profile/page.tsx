@@ -6,11 +6,7 @@ import Footer from "@/components/Footer";
 import { useRouter } from "next/navigation";
 import ProfileHeader from "@/components/ProfileHeader";
 import PomodoroTimer from "@/components/PomodoroTimer";
-
-interface UserProfile {
-  id: string;
-  email: string;
-}
+import { UserProfile } from "../interfaces/UserProfile";
 
 function Profile() {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
@@ -50,7 +46,7 @@ function Profile() {
       <div className="max-w-7xl w-full">
         <ProfileHeader />
         <h1 className="flex justify-center items-center">
-          Welcome, {userProfile.email}!
+          Welcome, {userProfile.firstName} {userProfile.lastName}!
         </h1>
         <PomodoroTimer />
         <Footer />
