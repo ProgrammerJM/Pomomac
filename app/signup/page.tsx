@@ -7,6 +7,8 @@ import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { handleSubmitSignUp } from "../services/signUpUser";
 import Link from "next/link";
+import Footer from "@/components/Footer";
+import FormHeader from "@/components/FormHeader";
 
 export default function SignUpForm() {
   const [error, setError] = useState<string | null>(null);
@@ -15,89 +17,91 @@ export default function SignUpForm() {
   const router = useRouter();
 
   return (
-    <div className="max-w-md w-full mx-auto my-auto lg:my-10 md:my-10 sm:my-10 rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
-      <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
-        Welcome to Pomomac
-      </h2>
-      <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-        Start your learning journey with Pomomac. Sign up to get started.
-      </p>
-      <form
-        className="my-8"
-        onSubmit={(event) =>
-          handleSubmitSignUp(event, setError, setMessage, setLoading, router)
-        }
-      >
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-          <LabelInputContainer>
-            <Label htmlFor="firstName">First name</Label>
-            <Input
-              id="firstName"
-              placeholder="First Name"
-              type="text"
-              name="firstName"
-              autoComplete="given-name"
-            />
-          </LabelInputContainer>
-          <LabelInputContainer>
-            <Label htmlFor="lastName">Last name</Label>
-            <Input
-              id="lastName"
-              placeholder="Last Name"
-              type="text"
-              name="lastName"
-              autoComplete="family-name"
-            />
-          </LabelInputContainer>
-        </div>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
-          <Input
-            id="email"
-            placeholder="Email Address"
-            type="email"
-            name="email"
-            autoComplete="email"
-          />
-        </LabelInputContainer>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="password">Password</Label>
-          <Input
-            id="password"
-            placeholder="••••••••"
-            type="password"
-            name="password"
-            autoComplete="current-password"
-          />
-        </LabelInputContainer>
-        <LabelInputContainer className="mb-8">
-          <Label htmlFor="confirmPassword">Confirm password</Label>
-          <Input
-            id="confirmPassword"
-            placeholder="••••••••"
-            type="password"
-            name="confirmPassword"
-            autoComplete="current-password"
-          />
-        </LabelInputContainer>
-
-        <button
-          className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-          type="submit"
-          disabled={loading}
+    <section>
+      <FormHeader />
+      <div className="max-w-md w-full mx-auto my-auto rounded-none md:rounded-2xl p-6 lg:p-8 md:p-8 sm:p-8 shadow-input bg-white dark:bg-inherit dark:lg:border dark:md:border    ">
+        <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+          Welcome to Pomomac
+        </h2>
+        <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
+          Start your learning journey with Pomomac. Sign up to get started.
+        </p>
+        <form
+          className="my-8"
+          onSubmit={(event) =>
+            handleSubmitSignUp(event, setError, setMessage, setLoading, router)
+          }
         >
-          {loading ? "Loading..." : "Sign up \u2192"}
-          <BottomGradient />
-        </button>
+          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+            <LabelInputContainer>
+              <Label htmlFor="firstName">First name</Label>
+              <Input
+                id="firstName"
+                placeholder="First Name"
+                type="text"
+                name="firstName"
+                autoComplete="given-name"
+              />
+            </LabelInputContainer>
+            <LabelInputContainer>
+              <Label htmlFor="lastName">Last name</Label>
+              <Input
+                id="lastName"
+                placeholder="Last Name"
+                type="text"
+                name="lastName"
+                autoComplete="family-name"
+              />
+            </LabelInputContainer>
+          </div>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="email">Email Address</Label>
+            <Input
+              id="email"
+              placeholder="Email Address"
+              type="email"
+              name="email"
+              autoComplete="email"
+            />
+          </LabelInputContainer>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              id="password"
+              placeholder="••••••••"
+              type="password"
+              name="password"
+              autoComplete="current-password"
+            />
+          </LabelInputContainer>
+          <LabelInputContainer className="mb-8">
+            <Label htmlFor="confirmPassword">Confirm password</Label>
+            <Input
+              id="confirmPassword"
+              placeholder="••••••••"
+              type="password"
+              name="confirmPassword"
+              autoComplete="current-password"
+            />
+          </LabelInputContainer>
 
-        {error && <p className="text-red-500 mt-2 text-center">{error}</p>}
-        {message && (
-          <p className="text-green-500 mt-2 text-center">{message}</p>
-        )}
+          <button
+            className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Sign up \u2192"}
+            <BottomGradient />
+          </button>
 
-        <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
+          {error && <p className="text-red-500 mt-2 text-center">{error}</p>}
+          {message && (
+            <p className="text-green-500 mt-2 text-center">{message}</p>
+          )}
 
-        <div className="flex flex-col space-y-4">
+          <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
+
+          {/* <div className="flex flex-col space-y-4">
           <button
             className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
             type="submit"
@@ -117,19 +121,24 @@ export default function SignUpForm() {
               GitHub
             </span>
             <BottomGradient />
-          </button>
-          <span className="text-center">
-            Already have an account?{" "}
-            <Link
-              href="/login"
-              className="dark:text-white text-black underline"
-            >
-              Log In
-            </Link>
-          </span>
-        </div>
-      </form>
-    </div>
+          </button> */}
+
+          <div className="flex flex-col space-y-4">
+            <span className="text-center">
+              Already have an account?{" "}
+              <Link
+                href="/login"
+                className="dark:text-white text-black dark:hover:text-gray-500 hover:text-gray-500"
+              >
+                Log In
+              </Link>
+            </span>
+          </div>
+          {/* </div> */}
+        </form>
+        <Footer />
+      </div>
+    </section>
   );
 }
 
