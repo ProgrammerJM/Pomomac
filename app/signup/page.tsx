@@ -15,7 +15,7 @@ export default function SignUpForm() {
   const router = useRouter();
 
   return (
-    <div className="max-w-md w-full lg:mt-10 mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+    <div className="max-w-md w-full mx-auto my-auto lg:my-10 md:my-10 sm:my-10 rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
         Welcome to Pomomac
       </h2>
