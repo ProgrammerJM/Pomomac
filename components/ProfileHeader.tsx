@@ -4,6 +4,7 @@ import { logOutUser } from "@/app/services/logOutUser";
 import { BiLogOut } from "react-icons/bi";
 import UserSettings from "@/components/UserSettings";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function ProfileHeader() {
   const router = useRouter();
@@ -14,7 +15,9 @@ function ProfileHeader() {
 
   return (
     <div className="flex justify-between items-center p-9 lg:p-16 md:p-16 sm:p-14">
-      <h1 className="dark:text-white text-black font-bold">Pomomac</h1>
+      <Link href="/">
+        <h1 className="dark:text-white text-black font-bold">Pomomac</h1>
+      </Link>
       <div className="flex">
         <div className="flex justify-evenly w-24 mr-12">
           <button

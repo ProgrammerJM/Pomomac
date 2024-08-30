@@ -7,7 +7,9 @@ import Link from "next/link";
 function Header() {
   return (
     <div className="flex justify-between items-center p-9 lg:p-16 md:p-16 sm:p-14">
-      <h1 className="dark:text-white text-black font-bold">Pomomac</h1>
+      <Link href="/">
+        <h1 className="dark:text-white text-black font-bold">Pomomac</h1>
+      </Link>
       <div className="flex">
         <div className="flex justify-evenly w-24 mr-12">
           <Link
