@@ -1,45 +1,77 @@
-"use client";
+import { Pomodoro } from "@/app/interfaces/Pomodoro";
 import React, { useState, useEffect } from "react";
 
-const PomodoroTimer = () => {
-  const [timeLeft, setTimeLeft] = useState(25 * 60); // 25 minutes
-  const [isActive, setIsActive] = useState(false);
+export default function PomodoroTimer() {
+  const [pomodoros, setPomodoros] = useState<Pomodoro[]>([]);
+  const [duration, setDuration] = useState<number>(25);
+  const [userId, setUserId] = useState<string>(""); // Replace with actual user ID
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (isActive && timeLeft > 0) {
-      timer = setInterval(() => {
-        setTimeLeft((prevTime) => prevTime - 1);
-      }, 1000);
-    } else if (timeLeft === 0) {
-      setIsActive(false);
-      alert("Time's up!");
-    }
-    return () => clearInterval(timer);
-  }, [isActive, timeLeft]);
+    fetchPomodoros();
+  }, []);
 
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
+  const fetchPomodoros = async () => {
+    const response = await fetch(`/pomodoros/${userId}`);
+    const data = await response.json();
+    setPomodoros(data);
   };
 
-  const handleStartPause = () => {
-    setIsActive(!isActive);
+  const createPomodoro = async () => {
+    const response = await fetch("/pomodoros", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId, duration }),
+    });
+    const newPomodoro = await response.json();
+    setPomodoros([...pomodoros, newPomodoro]);
   };
 
-  const handleReset = () => {
-    setIsActive(false);
-    setTimeLeft(25 * 60);
+  const updatePomodoro = async (id: number, completed: boolean) => {
+    const response = await fetch(`/pomodoros/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ completed }),
+    });
+    const updatedPomodoro = await response.json();
+    setPomodoros(pomodoros.map((p) => (p.id === id ? updatedPomodoro : p)));
+  };
+
+  const deletePomodoro = async (id: number) => {
+    await fetch(`/pomodoros/${id}`, {
+      method: "DELETE",
+    });
+    setPomodoros(pomodoros.filter((p) => p.id !== id));
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <h2>{formatTime(timeLeft)}</h2>
-      <button onClick={handleStartPause}>{isActive ? "Pause" : "Start"}</button>
-      <button onClick={handleReset}>Reset</button>
+    <div>
+      <h2>Pomodoro Timer</h2>
+      <div>
+        <input
+          type="number"
+          value={duration}
+          onChange={(e) => setDuration(parseInt(e.target.value))}
+        />
+        <button onClick={createPomodoro}>Start Pomodoro</button>
+      </div>
+      <ul>
+        {pomodoros.map((pomodoro) => (
+          <li key={pomodoro.id}>
+            {pomodoro.duration} minutes -{" "}
+            {pomodoro.completed ? "Completed" : "In Progress"}
+            <button
+              onClick={() => updatePomodoro(pomodoro.id, !pomodoro.completed)}
+            >
+              {pomodoro.completed ? "Mark Incomplete" : "Mark Complete"}
+            </button>
+            <button onClick={() => deletePomodoro(pomodoro.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-};
-
-export default PomodoroTimer;
+}
