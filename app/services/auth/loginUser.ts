@@ -40,7 +40,7 @@ async function handleSignIn(
     setError(null);
     setLoading(false);
     setMessage(data.message);
-    router.push("/profile");
+    router.push("/task");
   } catch (error: any) {
     console.error("Login failed:", error);
     setError("Sign in failed.");
