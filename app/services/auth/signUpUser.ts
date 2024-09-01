@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { toSentenceCase } from "../util/toSentenceCase";
+import { toSentenceCase } from "../../util/toSentenceCase";
 
 export async function handleSubmitSignUp(
   event: FormEvent<HTMLFormElement>,
