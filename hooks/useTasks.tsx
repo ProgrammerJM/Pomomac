@@ -4,7 +4,7 @@ import { Tasks } from "@/app/interfaces/Pomodoro";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
-const useTasks = () => {
+const useTasks = (refresh: boolean) => {
   const [tasks, setTasks] = useState<Tasks[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -33,7 +33,7 @@ const useTasks = () => {
     };
 
     fetchTasks();
-  }, []);
+  }, [refresh]);
 
   return { tasks, loading, error };
 };

@@ -4,7 +4,7 @@ import useTasks from "../../hooks/useTasks";
 import React from "react";
 
 const TaskList = ({ refresh }: { refresh: boolean }) => {
-  const { tasks, loading, error } = useTasks();
+  const { tasks, loading, error } = useTasks(refresh);
 
   console.log("it goes in here");
 
