@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { handleSubmitSignUp } from "../services/signUpUser";
+import { handleSubmitSignUp } from "../services/auth/signUpUser";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import FormHeader from "@/components/FormHeader";

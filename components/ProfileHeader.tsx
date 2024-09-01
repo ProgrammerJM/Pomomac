@@ -1,6 +1,6 @@
 import React from "react";
 import { ToggleMode } from "./ToggleMode";
-import { logOutUser } from "@/app/services/logOutUser";
+import { logOutUser } from "@/app/services/auth/logOutUser";
 import { BiLogOut } from "react-icons/bi";
 import UserSettings from "@/components/UserSettings";
 import { useRouter } from "next/navigation";

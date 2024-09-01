@@ -1,4 +1,4 @@
-import { editUserSettings } from "@/app/services/editUserSettings";
+import { editUserSettings } from "@/app/services/auth/editUserSettings";
 import React from "react";
 import { CiSettings } from "react-icons/ci";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { fetchUserProfile } from "@/app/services/fetchUserProfile";
+import { fetchUserProfile } from "@/app/services/protectedRoutes/fetchUserProfile";
 import Footer from "@/components/Footer";
 import { useRouter } from "next/navigation";
 import ProfileHeader from "@/components/ProfileHeader";
