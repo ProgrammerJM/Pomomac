@@ -6,3 +6,14 @@ export interface Pomodoro {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface Tasks {
+  id?: string;
+  userId?: string;
+  name: string;
+  description: string;
+  status: string;
+  completed?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
