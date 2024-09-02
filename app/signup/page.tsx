@@ -19,7 +19,7 @@ export default function SignUpForm() {
   return (
     <section>
       <FormHeader />
-      <div className="max-w-md w-full mx-auto my-auto rounded-none md:rounded-2xl p-6 lg:p-8 md:p-8 sm:p-8 shadow-input bg-white dark:bg-inherit dark:lg:border dark:md:border    ">
+      <div className="max-w-md w-full mx-auto my-auto rounded-none md:rounded-2xl p-6 lg:p-8 md:p-8 sm:p-8 shadow-input bg-white dark:bg-inherit">
         <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
           Welcome to Pomomac
         </h2>
