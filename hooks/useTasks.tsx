@@ -1,6 +1,6 @@
 "use client";
 
-import { Tasks } from "@/app/interfaces/Pomodoro";
+import { Tasks } from "@/interfaces/Pomodoro";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 

@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { useRouter } from "next/navigation";
 import ProfileHeader from "@/components/ProfileHeader";
 import PomodoroTimer from "@/components/PomodoroTimer";
-import { UserProfile } from "../interfaces/UserProfile";
+import { UserProfile } from "../../interfaces/UserProfile";
 
 function Profile() {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);

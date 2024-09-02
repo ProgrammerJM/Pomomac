@@ -1,4 +1,4 @@
-import { Pomodoro } from "@/app/interfaces/Pomodoro";
+import { Pomodoro } from "@/interfaces/Pomodoro";
 import React, { useState, useEffect } from "react";
 
 export default function PomodoroTimer() {
