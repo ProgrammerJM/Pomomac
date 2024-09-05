@@ -2,6 +2,7 @@
 
 import useTasks from "../../hooks/useTasks";
 import React from "react";
+import TaskEdit from "./TaskEdit";
 
 const TaskList = ({ refresh }: { refresh: boolean }) => {
   const { tasks, loading, error } = useTasks(refresh);
@@ -14,15 +15,20 @@ const TaskList = ({ refresh }: { refresh: boolean }) => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center">
       <h2>Tasks</h2>
       <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <strong>{task.name}</strong>: {task.description} (Status:{" "}
-            {task.status})
-          </li>
-        ))}
+        {tasks.map(
+          (task: { id: string; name: string; description: string }) => (
+            <li key={task.id}>
+              <TaskEdit
+                id={task.id}
+                name={task.name}
+                description={task.description}
+              />
+            </li>
+          )
+        )}
       </ul>
     </div>
   );

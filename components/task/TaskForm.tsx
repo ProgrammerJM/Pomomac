@@ -29,7 +29,11 @@ const TaskForm = ({ onTaskAdded }: { onTaskAdded: () => void }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="flex border justify-evenly items-center"
+    >
+      <label htmlFor="taskName">Task Name</label>
       <input
         type="text"
         value={taskName}
