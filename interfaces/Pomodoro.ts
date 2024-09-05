@@ -8,7 +8,7 @@ export interface Pomodoro {
 }
 
 export interface Tasks {
-  id?: string;
+  id: string;
   userId?: string;
   name: string;
   description: string;
