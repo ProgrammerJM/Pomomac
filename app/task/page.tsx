@@ -15,8 +15,10 @@ const Task = () => {
   return (
     <div>
       <ProfileHeader />
-      <TaskForm onTaskAdded={handleTaskAdded} />
-      <TaskList refresh={refresh} />
+      <div className="mx-28 px-2">
+        <TaskList refresh={refresh} />
+        <TaskForm onTaskAdded={handleTaskAdded} />
+      </div>
     </div>
   );
 };
