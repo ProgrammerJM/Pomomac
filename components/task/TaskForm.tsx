@@ -31,9 +31,16 @@ const TaskForm = ({ onTaskAdded }: { onTaskAdded: () => void }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex border justify-evenly items-center"
+      className="flex flex-col justify-evenly items-center text-center"
     >
       <label htmlFor="taskName">Task Name</label>
+      <textarea
+        value={taskDescription}
+        onChange={(e) => setTaskDescription(e.target.value)}
+        placeholder="What are you working on?"
+        required
+        className="text-center border"
+      />
       <input
         type="text"
         value={taskName}
@@ -41,13 +48,7 @@ const TaskForm = ({ onTaskAdded }: { onTaskAdded: () => void }) => {
         placeholder="Task Name"
         required
       />
-      <textarea
-        value={taskDescription}
-        onChange={(e) => setTaskDescription(e.target.value)}
-        placeholder="Task Description"
-        required
-      />
-      <button type="submit">Add Task</button>
+      <button type="submit">Add New Task</button>
       {error && <p>{error}</p>}
     </form>
   );
