@@ -15,7 +15,7 @@ const TaskList = ({ refresh }: { refresh: boolean }) => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center mx-28">
       <h2>Tasks</h2>
       <ul>
         {tasks.map(
