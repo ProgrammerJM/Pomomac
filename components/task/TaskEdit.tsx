@@ -1,6 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 function TaskEdit({
   id,
@@ -51,36 +61,61 @@ function TaskEdit({
   };
 
   return dialogOpen ? (
-    <div className="flex items-center">
-      <input
-        type="text"
-        value={taskName}
-        onChange={changeTaskName}
-        placeholder="Task Name"
-        required
-      />
-      <textarea
-        value={taskDescription}
-        onChange={changeDescription}
-        placeholder="Task Description"
-        required
-      />
-      <div className="mt-4 flex justify-end">
+    <Card className="w-[350px]">
+      <CardHeader>
+        <CardTitle>What are you working on?</CardTitle>
+        <CardDescription>Add Task</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form>
+          <div className="grid w-full items-center gap-4">
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="name">Task</Label>
+              <Input id="description" placeholder="Task Description" />
+            </div>
+          </div>
+        </form>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <button>Save</button>
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-          onClick={(event) => updateTaskAndDescription(event)}
-        >
-          Save
-        </button>
-        <button
+          className="outline outline-none"
           onClick={() => setDialogOpen(false)}
-          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
         >
           Cancel
         </button>
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
   ) : (
+    // <div className="flex items-center">
+    //   <input
+    //     type="text"
+    //     value={taskName}
+    //     onChange={changeTaskName}
+    //     placeholder="Task Name"
+    //     required
+    //   />
+    //   <textarea
+    //     value={taskDescription}
+    //     onChange={changeDescription}
+    //     placeholder="Task Description"
+    //     required
+    //   />
+    //   <div className="mt-4 flex justify-end">
+    //     <button
+    //       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+    //       onClick={(event) => updateTaskAndDescription(event)}
+    //     >
+    //       Save
+    //     </button>
+    //     <button
+    //       onClick={() => setDialogOpen(false)}
+    //       className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+    //     >
+    //       Cancel
+    //     </button>
+    //   </div>
+    // </div>
     <div>
       <strong>{name}</strong>: {description}
       <button onClick={() => setDialogOpen(true)}>Edit</button>
