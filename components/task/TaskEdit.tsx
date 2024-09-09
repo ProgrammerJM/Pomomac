@@ -30,7 +30,7 @@ function TaskEdit({
   };
 
   const changeDescription = async (
-    event: React.ChangeEvent<HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setTaskDescription(event.target.value);
   };
@@ -60,67 +60,116 @@ function TaskEdit({
     console.log("Updated Task and Description");
   };
 
+  const openDialog = () => {
+    setTaskName(name);
+    setTaskDescription(description);
+    setDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setTaskName(name);
+    setTaskDescription(description);
+    setDialogOpen(false);
+  };
+
   return dialogOpen ? (
     <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle>What are you working on?</CardTitle>
-        <CardDescription>Add Task</CardDescription>
+        <CardDescription>{taskDescription}</CardDescription>
       </CardHeader>
       <CardContent>
         <form>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Task</Label>
-              <Input id="description" placeholder="Task Description" />
+              <Input
+                id="description"
+                value={taskDescription}
+                onChange={changeDescription}
+              />
             </div>
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <button>Save</button>
-        <button
-          className="outline outline-none"
-          onClick={() => setDialogOpen(false)}
-        >
+        <button onClick={updateTaskAndDescription}>Save</button>
+        <button className="outline outline-none" onClick={closeDialog}>
           Cancel
         </button>
       </CardFooter>
     </Card>
   ) : (
-    // <div className="flex items-center">
-    //   <input
-    //     type="text"
-    //     value={taskName}
-    //     onChange={changeTaskName}
-    //     placeholder="Task Name"
-    //     required
-    //   />
-    //   <textarea
-    //     value={taskDescription}
-    //     onChange={changeDescription}
-    //     placeholder="Task Description"
-    //     required
-    //   />
-    //   <div className="mt-4 flex justify-end">
-    //     <button
-    //       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-    //       onClick={(event) => updateTaskAndDescription(event)}
-    //     >
-    //       Save
-    //     </button>
-    //     <button
-    //       onClick={() => setDialogOpen(false)}
-    //       className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-    //     >
-    //       Cancel
-    //     </button>
-    //   </div>
-    // </div>
     <div>
       <strong>{name}</strong>: {description}
-      <button onClick={() => setDialogOpen(true)}>Edit</button>
+      <button onClick={openDialog}>Edit</button>
     </div>
   );
 }
 
 export default TaskEdit;
+
+// return dialogOpen ? (
+//   <Card className="w-[350px]">
+//     <CardHeader>
+//       {/* <CardTitle>What are you working on?</CardTitle> */}
+//       <CardDescription>{taskDescription}</CardDescription>
+//     </CardHeader>
+//     <CardContent>
+//       <form>
+//         <div className="grid w-full items-center gap-4">
+//           <div className="flex flex-col space-y-1.5">
+//             <Label htmlFor="name">Task</Label>
+//             <Input
+//               id="description"
+//               value={taskDescription}
+//               onChange={changeDescription}
+//             />
+//           </div>
+//         </div>
+//       </form>
+//     </CardContent>
+//     <CardFooter className="flex justify-between">
+//       <button>Save</button>
+//       <button
+//         className="outline outline-none"
+//         onClick={() => setDialogOpen(false)}
+//       >
+//         Cancel
+//       </button>
+//     </CardFooter>
+//   </Card>
+// ) : (
+//   // <div className="flex items-center">
+//   //   <input
+//   //     type="text"
+//   //     value={taskName}
+//   //     onChange={changeTaskName}
+//   //     placeholder="Task Name"
+//   //     required
+//   //   />
+//   //   <textarea
+//   //     value={taskDescription}
+//   //     onChange={changeDescription}
+//   //     placeholder="Task Description"
+//   //     required
+//   //   />
+//   //   <div className="mt-4 flex justify-end">
+//   //     <button
+//   //       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+//   //       onClick={(event) => updateTaskAndDescription(event)}
+//   //     >
+//   //       Save
+//   //     </button>
+//   //     <button
+//   //       onClick={() => setDialogOpen(false)}
+//   //       className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+//   //     >
+//   //       Cancel
+//   //     </button>
+//   //   </div>
+//   // </div>
+//   <div>
+//     <strong>{name}</strong>: {description}
+//     <button onClick={() => setDialogOpen(true)}>Edit</button>
+//   </div>
+// );
