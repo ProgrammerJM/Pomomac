@@ -15,21 +15,16 @@ const TaskList = ({ refresh }: { refresh: boolean }) => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="flex flex-col justify-center items-center mx-28">
+    <div className="flex flex-col justify-center items-center mx-52">
       <h2>Tasks</h2>
-      <ul>
-        {tasks.map(
-          (task: { id: string; name: string; description: string }) => (
-            <li key={task.id}>
-              <TaskEdit
-                id={task.id}
-                name={task.name}
-                description={task.description}
-              />
-            </li>
-          )
-        )}
-      </ul>
+      {tasks.map((task: { id: string; name: string; description: string }) => (
+        <TaskEdit
+          key={task.id}
+          id={task.id}
+          name={task.name}
+          description={task.description}
+        />
+      ))}
     </div>
   );
 };
