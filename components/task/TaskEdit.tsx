@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { HiDotsVertical } from "react-icons/hi";
 
 function TaskEdit({
   id,
@@ -73,7 +74,7 @@ function TaskEdit({
   };
 
   return dialogOpen ? (
-    <Card className="w-[350px]">
+    <Card className="w-full mt-5">
       <CardHeader>
         <CardDescription>{taskDescription}</CardDescription>
       </CardHeader>
@@ -99,9 +100,15 @@ function TaskEdit({
       </CardFooter>
     </Card>
   ) : (
-    <div>
-      <strong>{name}</strong>: {description}
-      <button onClick={openDialog}>Edit</button>
+    <div className="flex justify-between items-center text-center py-6 border rounded-2xl w-full mt-4">
+      <div>
+        <span className="ml-6">
+          {name}: {description}
+        </span>
+      </div>
+      <button onClick={openDialog} className="mr-4">
+        <HiDotsVertical />
+      </button>
     </div>
   );
 }
