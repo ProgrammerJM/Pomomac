@@ -22,6 +22,16 @@ function Header() {
             />
             <span className="whitespace-nowrap">Sign Up</span>
           </Link>
+          <Link
+            href={"/signin"}
+            className="flex justify-center items-center border border-black dark:border-white rounded-lg dark:text-white text-black px-2 py-2"
+          >
+            <FaUserCircle
+              className="dark:text-white text-black w-auto mr-2"
+              size={20}
+            />
+            <span className="whitespace-nowrap">Sign In</span>
+          </Link>
           <button>
             <BsThreeDots
               className="dark:text-white text-black ml-2"
@@ -30,8 +40,8 @@ function Header() {
             />
           </button>
         </div>
-        <ToggleMode />
       </div>
+      <ToggleMode />
     </div>
   );
 }
