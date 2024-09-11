@@ -10,7 +10,7 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import FormHeader from "@/components/FormHeader";
 
-export default function LoginForm() {
+export default function SignInForm() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
