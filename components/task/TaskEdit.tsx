@@ -61,6 +61,23 @@ function TaskEdit({
     console.log("Updated Task and Description");
   };
 
+  const deleteTaskAndDescription = async () => {
+    const reponse = await fetch(`http://localhost:5000/api/task/todo/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: id,
+      }),
+      credentials: "include",
+    });
+
+    if (!reponse.ok) {
+      throw new Error("Failed to delete task and description");
+    }
+
+    console.log("Deleted Task and Description");
+  };
+
   const openDialog = () => {
     setTaskName(name);
     setTaskDescription(description);
@@ -76,7 +93,10 @@ function TaskEdit({
   return dialogOpen ? (
     <Card className="w-full mt-5">
       <CardHeader>
-        <CardDescription>{taskDescription}</CardDescription>
+        <CardDescription className="flex justify-between">
+          {taskDescription}
+          <button onClick={deleteTaskAndDescription}>X</button>
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <form>
