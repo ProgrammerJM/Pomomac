@@ -49,7 +49,7 @@ export async function handleSubmitSignUp(
       setError(null);
       setLoading(false);
       setMessage(data.message);
-      router.push("/login");
+      router.push("/signin");
     }
   } catch (error: any) {
     console.error(error);

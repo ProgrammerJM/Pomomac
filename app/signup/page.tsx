@@ -127,7 +127,7 @@ export default function SignUpForm() {
             <span className="text-center">
               Already have an account?{" "}
               <Link
-                href="/login"
+                href="/signin"
                 className="dark:text-white text-black dark:hover:text-gray-500 hover:text-gray-500"
               >
                 Log In
