@@ -1,7 +1,7 @@
 ## Pomomac
 
-This is a simple pomodoro timer app developed with the use of NextJS.
-Backend can be seen here: [https://github.com/ProgrammerJM/Pomomac-API]
+This is a simple pomodoro timer web app developed with the use of NextJS as frontend development framework.
+Backend side can be seen here: [https://github.com/ProgrammerJM/Pomomac-API]
 
 ## Installation
 
